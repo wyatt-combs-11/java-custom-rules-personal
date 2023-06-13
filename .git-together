@@ -1,0 +1,5 @@
+[git-together "authors"]
+    db = "David Broscious; dbroscious"
+    wc = "Wyatt Combs; wcombs"
+[git-together]
+    domain = gaig.com
