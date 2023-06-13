@@ -1,0 +1,37 @@
+<h2>Why is this an issue?</h2>
+<p>Even though the signatures for methods in a servlet include <code>throws IOException, ServletException</code>, it’s a bad idea to let such
+exceptions be thrown. Failure to catch exceptions in a servlet could leave a system in a vulnerable state, possibly resulting in denial-of-service
+attacks, or the exposure of sensitive information because when a servlet throws an exception, the servlet container typically sends debugging
+information back to the user. And that information could be very valuable to an attacker.</p>
+<p>This rule checks all exceptions in methods named "do*" are explicitly handled in servlet classes.</p>
+<h3>Noncompliant code example</h3>
+<pre>
+public void doGet(HttpServletRequest request, HttpServletResponse response)
+  throws IOException, ServletException {
+  String ip = request.getRemoteAddr();
+  InetAddress addr = InetAddress.getByName(ip); // Noncompliant; getByName(String) throws UnknownHostException
+  //...
+}
+</pre>
+<h3>Compliant solution</h3>
+<pre>
+public void doGet(HttpServletRequest request, HttpServletResponse response)
+  throws IOException, ServletException {
+  try {
+    String ip = request.getRemoteAddr();
+    InetAddress addr = InetAddress.getByName(ip);
+    //...
+  }
+  catch (UnknownHostException uhex) {
+    //...
+  }
+}
+</pre>
+<h2>Resources</h2>
+<ul>
+  <li> <a href="https://www.owasp.org/www-project-top-ten/2017/A3_2017-Sensitive_Data_Exposure">OWASP Top 10 2017 Category A3</a> - Sensitive Data
+  Exposure </li>
+  <li> <a href="https://cwe.mitre.org/data/definitions/600">MITRE, CWE-600</a> - Uncaught Exception in Servlet </li>
+  <li> <a href="https://wiki.sei.cmu.edu/confluence/x/-zZGBQ">CERT, ERR01-J.</a> - Do not allow exceptions to expose sensitive information </li>
+</ul>
+

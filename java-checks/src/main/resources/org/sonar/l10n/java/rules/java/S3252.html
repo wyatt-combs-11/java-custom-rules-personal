@@ -1,0 +1,28 @@
+<h2>Why is this an issue?</h2>
+<p>In the interest of code clarity, <code>static</code> members of a <code>base</code> class should never be accessed using a derived type’s name.
+Doing so is confusing and could create the illusion that two different static members exist.</p>
+<h3>Noncompliant code example</h3>
+<pre>
+class Parent {
+  public static int counter;
+}
+
+class Child extends Parent {
+  public Child() {
+    Child.counter++;  // Noncompliant
+  }
+}
+</pre>
+<h3>Compliant solution</h3>
+<pre>
+class Parent {
+  public static int counter;
+}
+
+class Child extends Parent {
+  public Child() {
+    Parent.counter++;
+  }
+}
+</pre>
+

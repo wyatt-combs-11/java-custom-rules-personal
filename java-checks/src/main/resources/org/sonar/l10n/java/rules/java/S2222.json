@@ -1,0 +1,24 @@
+{
+  "title": "Locks should be released on all paths",
+  "type": "BUG",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "20min"
+  },
+  "tags": [
+    "cwe",
+    "multi-threading",
+    "symbolic-execution"
+  ],
+  "defaultSeverity": "Critical",
+  "ruleSpecification": "RSPEC-2222",
+  "sqKey": "S2222",
+  "scope": "All",
+  "securityStandards": {
+    "CWE": [
+      459
+    ]
+  },
+  "quickfix": "unknown"
+}

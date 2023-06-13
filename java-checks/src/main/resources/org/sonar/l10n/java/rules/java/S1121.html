@@ -1,0 +1,35 @@
+<h2>Why is this an issue?</h2>
+<p>Assignments within sub-expressions are hard to spot and therefore make the code less readable. Ideally, sub-expressions should not have
+side-effects.</p>
+<h3>Noncompliant code example</h3>
+<pre>
+if ((str = cont.substring(pos1, pos2)).isEmpty()) {  // Noncompliant
+  //...
+</pre>
+<h3>Compliant solution</h3>
+<pre>
+str = cont.substring(pos1, pos2);
+if (str.isEmpty()) {
+  //...
+</pre>
+<h3>Exceptions</h3>
+<p>Assignments in <code>while</code> statement conditions, and assignments enclosed in relational expressions are ignored.</p>
+<pre>
+BufferedReader br = new BufferedReader(/* ... */);
+String line;
+while ((line = br.readLine()) != null) {...}
+if ((i = j) &gt;= 1) {...}
+</pre>
+<p>Chained assignments, including compound assignments, are ignored.</p>
+<pre>
+int i = j = 0;
+int k = (j += 1);
+result = (bresult = new byte[len]);
+</pre>
+<h2>Resources</h2>
+<ul>
+  <li> <a href="https://cwe.mitre.org/data/definitions/481">MITRE, CWE-481</a> - Assigning instead of Comparing </li>
+  <li> <a href="https://wiki.sei.cmu.edu/confluence/x/ZNYxBQ">CERT, EXP45-C.</a> - Do not perform assignments in selection statements </li>
+  <li> <a href="https://wiki.sei.cmu.edu/confluence/x/ITZGBQ">CERT, EXP51-J.</a> - Do not perform assignments in conditional expressions </li>
+</ul>
+

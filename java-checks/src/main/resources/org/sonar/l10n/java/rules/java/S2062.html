@@ -1,0 +1,34 @@
+<h2>Why is this an issue?</h2>
+<p>The <code>readResolve()</code> method allows final tweaks to the state of an object during deserialization. Non-final classes which implement
+<code>readResolve()</code>, should not set its visibility to <code>private</code> since it will then be unavailable to child classes.</p>
+<h3>Noncompliant code example</h3>
+<pre>
+public class Fruit implements Serializable {
+  private static final long serialVersionUID = 1;
+
+  private Object readResolve() throws ObjectStreamException  // Noncompliant
+  {...}
+
+  //...
+}
+
+public class Raspberry extends Fruit implements Serializable {  // No access to parent's readResolve() method
+  //...
+}
+</pre>
+<h3>Compliant solution</h3>
+<pre>
+public class Fruit implements Serializable {
+  private static final long serialVersionUID = 1;
+
+  protected Object readResolve() throws ObjectStreamException
+  {...}
+
+  //...
+}
+
+public class Raspberry extends Fruit implements Serializable {
+  //...
+}
+</pre>
+
