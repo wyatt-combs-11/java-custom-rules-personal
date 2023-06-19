@@ -30,22 +30,22 @@ class MyJavaRulesDefinitionTest {
     assertThat(repository.rules().stream().filter(Rule::template)).isEmpty();
 
     assertRuleProperties(repository);
-    assertParameterProperties(repository);
+//    assertParameterProperties(repository);
     assertAllRuleParametersHaveDescription(repository);
   }
 
-  private static void assertParameterProperties(Repository repository) {
-    Param max = repository.rule("AvoidAnnotation").param("name");
-    assertThat(max).isNotNull();
-    assertThat(max.defaultValue()).isEqualTo("Inject");
-    assertThat(max.description()).isEqualTo("Name of the annotation to avoid, without the prefix @, for instance 'Override'");
-    assertThat(max.type()).isEqualTo(RuleParamType.STRING);
-  }
+//  private static void assertParameterProperties(Repository repository) {
+//    Param max = repository.rule("VariableNameLengthMinimumRule").param("name");
+//    assertThat(max).isNotNull();
+//    assertThat(max.defaultValue()).isEqualTo("Inject");
+//    assertThat(max.description()).isEqualTo("Name of the annotation to avoid, without the prefix @, for instance 'Override'");
+//    assertThat(max.type()).isEqualTo(RuleParamType.STRING);
+//  }
 
   private static void assertRuleProperties(Repository repository) {
-    Rule rule = repository.rule("AvoidAnnotation");
+    Rule rule = repository.rule("VariableNameLengthMinimumRule");
     assertThat(rule).isNotNull();
-    assertThat(rule.name()).isEqualTo("Title of AvoidAnnotation");
+    assertThat(rule.name()).isEqualTo("Variable name length should be at least 4 characters");
     assertThat(rule.debtRemediationFunction().type()).isEqualTo(Type.CONSTANT_ISSUE);
     assertThat(rule.type()).isEqualTo(RuleType.CODE_SMELL);
   }

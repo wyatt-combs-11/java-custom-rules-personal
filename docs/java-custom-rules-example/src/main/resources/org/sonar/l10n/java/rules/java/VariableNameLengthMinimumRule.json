@@ -1,13 +1,15 @@
 {
-  "title": "Avoid using SuperClass",
+  "title": "Variable name length should be at least 4 characters",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
     "func": "Constant\/Issue",
-    "constantCost": "10min"
+    "constantCost": "1min"
   },
   "tags": [
-    "pitfall"
+    "bugs",
+    "custom",
+    "variable"
   ],
   "defaultSeverity": "Major"
 }

@@ -28,22 +28,14 @@ public final class RulesList {
    */
   public static List<Class<? extends JavaCheck>> getJavaChecks() {
     return Collections.unmodifiableList(Arrays.asList(
-      SpringControllerRequestMappingEntityRule.class,
-      AvoidAnnotationRule.class,
-      AvoidBrandInMethodNamesRule.class,
-      AvoidMethodDeclarationRule.class,
-      AvoidSuperClassRule.class,
-      AvoidTreeListRule.class,
-      MyCustomSubscriptionRule.class,
-      SecurityAnnotationMandatoryRule.class,
-      MyFirstCustomCheck.class));
+      MyFirstCustomCheck.class,
+      VariableNameLengthMinimumRule.class));
   }
 
   /**
    * These rules are going to target TEST code only
    */
   public static List<Class<? extends JavaCheck>> getJavaTestChecks() {
-    return Collections.unmodifiableList(Arrays.asList(
-      NoIfStatementInTestsRule.class));
+    return Collections.unmodifiableList(Arrays.asList());
   }
 }

@@ -1,0 +1,21 @@
+<p>For a variable being declared in code, the length of the name should be at least 4 characters.</p>
+
+<h2>Noncompliant Code Example</h2>
+<pre>
+class MyClass {
+  void doSomething() {
+    int n = 3; // Noncompliant
+    String str; // Noncompliant
+  }
+}
+</pre>
+
+<h2>Compliant Solution</h2>
+<pre>
+class MyClass {
+  int doSomething(int number) { // Compliant
+    int numberPlusTwo = number + 2; // Compliant
+    return numberPlusTwo;
+  }
+}
+</pre>
